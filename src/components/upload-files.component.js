@@ -11,7 +11,7 @@ export default class UploadFiles extends Component {
     this.state = {
       selectedFiles: undefined,
       progressInfos: [],
-      message: null,
+      message: [],
 
       fileInfos: [],
     };
@@ -43,9 +43,9 @@ export default class UploadFiles extends Component {
     })
       .then((response) => {
         this.setState((prev) => {
-          let prevMessage = prev.message ? prev.message + "\n" : "";
+          let nextMessage = [...prev.message, "Uploaded the file successfully: " + file.name];
           return {
-            message: prevMessage + response.data.message,
+            message: nextMessage
           };
         });
 
@@ -58,9 +58,12 @@ export default class UploadFiles extends Component {
       })
       .catch(() => {
         _progressInfos[idx].percentage = 0;
-        this.setState({
-          progressInfos: _progressInfos,
-          message: "Could not upload the file!",
+        this.setState((prev) => {
+          let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
+          return {
+            progressInfos: _progressInfos,
+            message: nextMessage
+          };
         });
       });
   }
@@ -77,7 +80,7 @@ export default class UploadFiles extends Component {
     this.setState(
       {
         progressInfos: _progressInfos,
-        message: null,
+        message: [],
       },
       () => {
         for (let i = 0; i < selectedFiles.length; i++) {
@@ -94,7 +97,7 @@ export default class UploadFiles extends Component {
       <div>
         {progressInfos &&
           progressInfos.map((progressInfo, index) => (
-            <div className="mb-2">
+            <div className="mb-2" key={index}>
               <span>{progressInfo.fileName}</span>
               <div className="progress">
                 <div
@@ -111,22 +114,28 @@ export default class UploadFiles extends Component {
             </div>
           ))}
 
-        <label className="btn btn-default">
-          <input type="file" multiple onChange={this.selectFiles} />
-        </label>
+        <div className="row my-3">
+          <div className="col-8">
+            <label className="btn btn-default p-0">
+              <input type="file" multiple onChange={this.selectFiles} />
+            </label>
+          </div>
 
-        <button
-          className="btn btn-success"
-          disabled={!selectedFiles}
-          onClick={this.uploadFiles}
-        >
-          Upload
-        </button>
+          <div className="col-4">
+            <button
+              className="btn btn-success btn-sm"
+              disabled={!selectedFiles}
+              onClick={this.uploadFiles}
+            >
+              Upload
+            </button>
+          </div>
+        </div>
 
-        {message && (
-          <div className="alert alert-light" role="alert">
+        {message.length > 0 && (
+          <div className="alert alert-secondary" role="alert">
             <ul>
-              {message.split("\n").map((item, i) => {
+              {message.map((item, i) => {
                 return <li key={i}>{item}</li>;
               })}
             </ul>

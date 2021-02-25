@@ -1,10 +1,22 @@
 ## React Multiple Files upload example with Progress Bar
 
+We’re gonna create a React Multiple Files upload application in that user can:
+
+- see the upload process (percentage) of each file with progress bars
+- view all uploaded files
+- download link to file when clicking on the file name
+
+![react-multiple-files-upload-example-progress-bar](react-multiple-files-upload-example-progress-bar.png)
+
 For more detail, please visit:
 > [React Multiple Files upload example with Progress Bar](https://bezkoder.com/react-multiple-files-upload/)
 
+> [React (with Hooks) Multiple Files upload example](https://bezkoder.com/react-hooks-multiple-file-upload/)
+
 Rest APIs server for this React Client:
 > [Node.js Express File Upload Rest API example](https://bezkoder.com/node-js-express-file-upload/)
+
+> [Node.js Express File Upload with Google Cloud Storage example](https://bezkoder.com/google-cloud-storage-nodejs-upload-file/)
 
 > [Spring Boot Multipart File upload example](https://bezkoder.com/spring-boot-file-upload/)
 
@@ -39,6 +51,11 @@ Serverless:
 > [React Firebase CRUD App with Realtime Database](https://bezkoder.com/react-firebase-crud/)
 
 > [React Firestore CRUD App example | Firebase Cloud Firestore](https://bezkoder.com/react-firestore-crud/)
+
+Integration (run back-end & front-end on same server/port)
+> [Integrate React with Spring Boot](https://bezkoder.com/integrate-reactjs-spring-boot/)
+
+> [Integrate React with Node.js Express](https://bezkoder.com/integrate-react-express-same-server-port/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
